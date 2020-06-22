@@ -1,3 +1,4 @@
+//Require functions for the bot
 const botconfig = require('./config/botconfig.json');
 const token = require('./config/token.json');
 const Discord = require('discord.js');
@@ -6,6 +7,7 @@ const fs = require('fs');
 
 const bot = new Discord.Client({disableEveryone: true});
 
+//Setup DB and Commands
 bot.mongoose = require('./utils/mongoose');
 const prefix = botconfig.prefix;
 bot.commands = new Enmap();
@@ -47,6 +49,6 @@ fs.readdir('./commands/', async (err, files) => {
 });
 
 
-
+//Login
 bot.mongoose.init();
 bot.login(token.token);
