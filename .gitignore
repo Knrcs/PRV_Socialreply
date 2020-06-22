@@ -1,5 +1,7 @@
 # Tokens
 config/token.json
+
+# Private Data
 node_modules
 start.bat
 utils/*.*
