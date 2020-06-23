@@ -1,33 +1,34 @@
 //Require functions for the bot
-const botconfig = require('./config/botconfig.json');
-const token = require('./config/token.json');
-const Discord = require('discord.js');
-const Enmap = require('enmap');
+const { Client, Collection } = require('discord.js');
 const fs = require('fs');
+require('dotenv-flow').config();
 
-const bot = new Discord.Client({disableEveryone: true});
+const config = {
+ token: process.env.TOKEN,
+ owner: process.env.OWNER,
+ prefix: process.env.PREFIX
+};
 
-//Setup DB and Commands
+const bot = new Client();
+
+bot.commands = new Collection();
 bot.mongoose = require('./utils/mongoose');
-const prefix = botconfig.prefix;
-bot.commands = new Enmap();
-
-
-
+bot.config = require('./config.js');
+require('./utils/functions')(bot);
 
 
 //Bot Status
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is online!`);
-    bot.user.setActivity("sb!Commands", { type: 'WATCHING' });
+    bot.user.setActivity("Just vibin xd rawr~", { type: 'WATCHING' });
 });
 
 
 
 bot.on("message", message => {
-    if(message.author.bot || !message.content.startsWith(botconfig.prefix)) return;
+    if(message.author.bot || !message.content.startsWith(config.prefix)) return;
 
-    const args = message.content.slice(botconfig.prefix.length).split(/ +/);
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
     const cmd = bot.commands.get(command);
@@ -51,4 +52,4 @@ fs.readdir('./commands/', async (err, files) => {
 
 //Login
 bot.mongoose.init();
-bot.login(token.token);
+bot.login(config.token);

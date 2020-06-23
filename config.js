@@ -5,8 +5,8 @@ module.exports = {
     prefix: process.env.PREFIX,
     defaultSettings: {
         prefix: process.env.PREFIX,
-        welcomeChannel: '',
-        welcomeMsg: '',
+        modRole: '',
+        adminRole: ''
         
     }
 };
