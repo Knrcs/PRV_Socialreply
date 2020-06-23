@@ -1,4 +1,5 @@
-exports.run = (bot, message, args, command) => {
+exports.run = (message, args, command) => {
+    const Discord = require('discord.js');
     const then = Date.now();
     message.channel.send('pinging...').then(m => {
         m.edit(`Pong! It took ${Date.now() - then}ms to send that message!`);

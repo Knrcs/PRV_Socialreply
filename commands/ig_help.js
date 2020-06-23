@@ -1,4 +1,4 @@
-exports.run = (bot, message, args, command) => {
+exports.run = (message, args, command) => {
     const Discord = require('discord.js');
 
     let botEmbed = new Discord.MessageEmbed()

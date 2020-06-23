@@ -34,7 +34,7 @@ bot.on("message", message => {
     const cmd = bot.commands.get(command);
     if (!cmd) return;
 
-    cmd.run(bot, message, args, command, Discord);
+    cmd.run(message, args, command);
 
 });
 // Alle Commands
