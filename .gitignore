@@ -1,7 +1,0 @@
-# Tokens
-config/*.*
-.env
-# Private Data
-node_modules
-start.bat
-utils/*.*
